@@ -498,7 +498,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 .trailer { border: 0; padding: 0; background: #000; color: #fff; border-radius: var(--r-card); width: min(92vw, 960px); overflow: visible; margin: auto; }
 .trailer::backdrop { background: rgba(0,0,0,.72); }
 .trailer-box { aspect-ratio: 16 / 9; border-radius: var(--r-card); overflow: hidden; display: grid; place-items: center; font-size: 18px; }
-.trailer-box iframe { width: 100%; height: 100%; border: 0; }
+.trailer-box iframe, .trailer-box video { width: 100%; height: 100%; border: 0; background: #000; }
 .trailer-x { position: absolute; top: -48px; right: 0; width: 40px; height: 40px; border-radius: 99px; background: #fff; display: grid; place-items: center; }
 .trailer-x svg { width: 20px; height: 20px; fill: none; stroke: var(--nch-black); stroke-width: 1.5; stroke-linecap: round; }
 
@@ -1418,6 +1418,14 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
 @media (prefers-reduced-motion: reduce) {
   .feat-grid.anim-ready .feat, .out-grid.anim-ready .out { opacity: 1; transform: none; animation: none !important; }
 }
+
+/* Vídeo del temario: tráiler con póster, se reproduce al pulsar */
+button.vid-slot { border: 0; padding: 0; margin: 0; font: inherit; color: inherit; cursor: pointer; display: block; }
+.vid-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vid-slot .vid-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; transition: transform .2s ease; }
+.vid-slot .vid-note { z-index: 1; top: 14px; bottom: auto; left: 14px; color: #fff; background: rgba(0,0,0,.6); padding: 7px 11px; border-radius: 99px; line-height: 1; }
+button.vid-slot:hover .vid-play { transform: translate(-50%, -50%) scale(1.08); }
+button.vid-slot:focus-visible { outline: 2px solid var(--nch-black); outline-offset: 4px; }
 </style>
 </head>
 <body>
@@ -1494,7 +1502,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
         <span class="fc-txt"><b>Skill de UI</b><small>12 mejoras aplicadas</small></span>
       </div>
       <div class="fc fc--tag fc--vercel" style="--r:-4deg;--d:.4s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>Vercel</div>
-      <img class="hero-alex" src="assets/alex-hero-v4.webp" width="1217" height="1500" alt="Alex Vaughtton, instructor del curso AI Product Builder" fetchpriority="high" />
+      <img class="hero-alex" src="assets/alex-hero-v5.webp" width="1600" height="2000" alt="Alex Vaughtton, instructor del curso AI Product Builder" fetchpriority="high" />
       <div class="fc fc--mail" style="--r:3deg;--d:.3s">
         <span class="fc-ico fc-ico--resend"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 18.5V5.5h4.3a3.6 3.6 0 0 1 0 7.2H8.2M12.4 12.7l3.9 5.8"/></svg></span>
         <span class="fc-txt"><b>Email enviado</b><small>Bienvenida · Resend</small></span>
@@ -1894,11 +1902,11 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
       </div>
 
       <aside class="syl-video">
-        <!-- VÍDEO: cuando lo tengamos, sustituir el contenido de .vid-slot por el <iframe>/<video> (mantiene 16:9) -->
-        <div class="vid-slot" id="temario-video" role="img" aria-label="Vídeo del curso, próximamente">
+        <button type="button" class="vid-slot" id="temario-video" aria-label="Reproducir el tráiler del curso">
+          <img class="vid-poster" src="assets/trailer-poster.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async" />
           <span class="vid-play"><svg aria-hidden="true"><use href="#i-play-solid"/></svg></span>
-          <span class="vid-note">Vídeo del curso · próximamente</span>
-        </div>
+          <span class="vid-note">Tráiler | AI Product Builder</span>
+        </button>
         <p class="vid-desc">Construye un producto real con IA y monta, paso a paso, el sistema que hace tu trabajo más ligero. 10 retos en vídeo, con una plantilla, una skill o un resultado verificable al final de cada uno. Sin código previo y a tu ritmo.</p>
         <a href="#precio" class="btn">Ver precio<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </aside>
@@ -1916,8 +1924,8 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
     </div>
 
     <div class="cm-stage">
-      <div class="cm-grid cm-grid--l" aria-hidden="true"><img src="assets/avatars/a1.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a4.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a6.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a2.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a5.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a7.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a3.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a6.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a1.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a5.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a2.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a7.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a4.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a3.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a6.jpg" alt="" width="64" height="64" loading="lazy"></div>
-      <div class="cm-grid cm-grid--r" aria-hidden="true"><img src="assets/avatars/a7.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a3.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a5.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a1.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a6.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a2.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a4.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a7.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a5.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a3.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a1.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a6.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a2.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a4.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a7.jpg" alt="" width="64" height="64" loading="lazy"></div>
+      <div class="cm-grid cm-grid--l" aria-hidden="true"><img src="assets/avatars/a22.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a8.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a9.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a10.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a23.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a11.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a12.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a13.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a24.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a14.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a25.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a15.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a16.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a17.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a26.jpg" alt="" width="64" height="64" loading="lazy"></div>
+      <div class="cm-grid cm-grid--r" aria-hidden="true"><img src="assets/avatars/a27.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a18.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a19.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a20.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a28.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a21.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a1.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a29.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a2.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a3.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a30.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a4.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a5.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a6.jpg" alt="" width="64" height="64" loading="lazy"><img src="assets/avatars/a31.jpg" alt="" width="64" height="64" loading="lazy"></div>
 
       <div class="cm-win">
         <div class="cm-top">
@@ -2284,7 +2292,7 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
   // Enlace de compra del curso individual (200 €). Pega aquí la URL de Stripe cuando la tengas:
   // todos los botones marcados con data-checkout apuntarán a ella. Mientras esté vacío,
   // llevan a la sección de precios.
-  const CHECKOUT_URL = '';
+  const CHECKOUT_URL = 'https://buy.stripe.com/eVqfZjbl8fMBdC9bgT8Zq0I?prefilled_promo_code=50-OFF';
 
   // Cuenta atrás del banner: termina el 27 de noviembre de 2026 a las 23:59:59 (hora de Madrid).
   // Al acabar, el banner desaparece solo.
@@ -2308,9 +2316,28 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
     }
   })();
 
-  // Vídeo del tráiler (YouTube o Vimeo). Pega aquí la URL cuando la tengas.
+  // Vídeo del tráiler: archivo propio (.mp4) o URL de YouTube / Vimeo.
   // Mientras esté vacío, el botón «Ver tráiler» abre un aviso en vez de un vídeo.
-  const TRAILER_URL = '';
+  const TRAILER_URL = 'assets/trailer.mp4';
+
+  // Vídeo del temario: al pulsar el póster se sustituye por el reproductor con el tráiler
+  (function () {
+    const slot = document.getElementById('temario-video');
+    if (!slot || !TRAILER_URL) return;
+    slot.addEventListener('click', function () {
+      if (slot.classList.contains('is-playing')) return;
+      const v = document.createElement('video');
+      v.src = TRAILER_URL;
+      v.controls = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.setAttribute('aria-label', 'Tráiler del curso');
+      slot.classList.add('is-playing');
+      slot.replaceChildren(v);
+      slot.removeAttribute('aria-label');
+      v.play().catch(function () {});
+    }, { once: true });
+  })();
 
   (function () {
     const dlg = document.getElementById('trailer');
@@ -2325,7 +2352,16 @@ details.reto:nth-of-type(n+7) .num { color: var(--purple); }
     }
     function open() {
       box.replaceChildren();
-      if (TRAILER_URL) {
+      if (/\.(mp4|webm|mov)(\?.*)?$/i.test(TRAILER_URL)) {
+        const v = document.createElement('video');
+        v.src = TRAILER_URL;
+        v.controls = true;
+        v.autoplay = true;
+        v.playsInline = true;
+        v.preload = 'metadata';
+        v.setAttribute('aria-label', 'Tráiler del curso');
+        box.appendChild(v);
+      } else if (TRAILER_URL) {
         const f = document.createElement('iframe');
         f.src = embed(TRAILER_URL);
         f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
